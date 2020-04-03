@@ -5,6 +5,7 @@ class Stack
 
     def push(el)
         @stack << el
+        el
     end
 
     def pop
