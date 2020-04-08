@@ -21,7 +21,7 @@ class Simon
 
   def take_turn
     system("clear")
-    
+
     show_sequence
     require_sequence
 
@@ -37,6 +37,8 @@ class Simon
       puts color
       sleep(1)
       system("clear")
+      sleep(0.25)
+      system("clear")
     end
     
   end
@@ -46,7 +48,10 @@ class Simon
 
     seq.length.times do |i|
       input = gets.chomp
-      self.game_over = true unless input == seq[i]
+      if input != seq[i]
+        self.game_over = true
+        return
+      end
     end
 
     # input = gets.chomp.split
