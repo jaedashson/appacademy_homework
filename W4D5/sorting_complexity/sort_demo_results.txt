@@ -1,0 +1,30 @@
+Press any key to benchmark sorts for 5 elements
+                user     system      total        real
+Tot. Merge:    0.000133   0.000042   0.000175 (  0.000165)
+Tot. Bubble:   0.000045   0.000014   0.000059 (  0.000054)
+Avg. Merge:    0.000044   0.000014   0.000058 (  0.000055)
+Avg. Bubble:   0.000015   0.000005   0.000020 (  0.000018)
+Press any key to benchmark sorts for 50 elements
+                user     system      total        real
+Tot. Merge:    0.000938   0.000296   0.001234 (  0.001223)
+Tot. Bubble:   0.001199   0.000000   0.001199 (  0.001199)
+Avg. Merge:    0.000313   0.000099   0.000411 (  0.000408)
+Avg. Bubble:   0.000400   0.000000   0.000400 (  0.000400)
+Press any key to benchmark sorts for 500 elements
+                user     system      total        real
+Tot. Merge:    0.017040   0.000000   0.017040 (  0.017117)
+Tot. Bubble:   0.082945   0.000000   0.082945 (  0.082947)
+Avg. Merge:    0.005680   0.000000   0.005680 (  0.005706)
+Avg. Bubble:   0.027648   0.000000   0.027648 (  0.027649)
+Press any key to benchmark sorts for 5000 elements
+                user     system      total        real
+Tot. Merge:    0.062961   0.000000   0.062961 (  0.062962)
+Tot. Bubble:    5.418098   0.000000   5.418098 (  5.419385)
+Avg. Merge:    0.020987   0.000000   0.020987 (  0.020987)
+Avg. Bubble:   1.806033   0.000000   1.806033 (  1.806462)
+Press any key to benchmark sorts for 50000 elements
+                user     system      total        real
+Tot. Merge:    0.565925   0.000000   0.565925 (  0.566071)
+Tot. Bubble: 567.954460   0.076629 568.031089 (568.118974)
+Avg. Merge:    0.188642   0.000000   0.188642 (  0.188690)
+Avg. Bubble: 189.318153   0.025543 189.343696 (189.372991)
