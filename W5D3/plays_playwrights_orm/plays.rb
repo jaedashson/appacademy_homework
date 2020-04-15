@@ -20,7 +20,7 @@ class Play
   end
 
   def self.find_by_title(title)
-    play = PlayDBConnection.instance.execute(<<-SQL, title)
+    data = PlayDBConnection.instance.execute(<<-SQL, title)
       SELECT
         *
       FROM
@@ -29,7 +29,7 @@ class Play
         title = ? 
     SQL
 
-    Play.new(play)
+    data.map { |datum| Play.new(datum) }
   end
 
   def self.find_by_playwright(name)
@@ -87,7 +87,7 @@ class Playwright
   end
 
   def self.find_by_name(name)
-    playwright = PlayDBConnection.instance.execute(<<-SQL, name)
+    data = PlayDBConnection.instance.execute(<<-SQL, name)
       SELECT
         *
       FROM
@@ -95,6 +95,8 @@ class Playwright
       WHERE
         name = ?
       SQL
+    # data.map { |datum| Playwright.new(datum) }
+    Playwright.new(data.first)
   end
 
   def initialize(options)
@@ -136,7 +138,7 @@ class Playwright
         playwrights
           ON playwrights.id = plays.playwright_id
       WHERE
-        playwright_id = ?
+        plays.playwright_id = ?
     SQL
     # or WHERE name = ?
     plays.map { |play| Play.new(play) }
