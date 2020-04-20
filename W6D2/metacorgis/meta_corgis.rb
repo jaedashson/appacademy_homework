@@ -102,7 +102,6 @@ class CorgiSnacks
 
 end
 
-
 class MetaCorgiSnacks
   def initialize(snack_box, box_id)
     @snack_box = snack_box
@@ -111,6 +110,15 @@ class MetaCorgiSnacks
 
   def method_missing(name, *args)
     # Your code goes here...
+    name = name.to_s
+
+    # How do I send with an argument?
+    get_info_method = "get_#{name}_info(#{@box_id})".intern 
+    get_tastiness_method = "get_#{name}_tastiness(#{@box_id})".intern
+
+    result = "#{name.capitalize}: "
+    result.concat("#{@snack_box.send(get_info_method)}") # NoMethodError: undefined method `get_bone_info(1)'
+    result.concat(": #{@snack_box.send(get_tastiness_method)}")
   end
 
 
