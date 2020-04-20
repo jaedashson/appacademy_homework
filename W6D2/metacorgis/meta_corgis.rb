@@ -106,23 +106,47 @@ class MetaCorgiSnacks
   def initialize(snack_box, box_id)
     @snack_box = snack_box
     @box_id = box_id
+
+    snack_box.methods.grep(/^get_(.*)_info$/) { MetaCorgiSnacks.define_snack $1 }
   end
 
-  def method_missing(name, *args)
-    # Your code goes here...
-    name = name.to_s
+  # # e.g. meta_snacks.bone # => "Bone: Phoenician rawhide: 20 "
+  # def method_missing(name, *args)
+  #   # Your code goes here...
+  #   name = name.to_s # name = "bone"
 
-    # How do I send with an argument?
-    get_info_method = "get_#{name}_info(#{@box_id})".intern 
-    get_tastiness_method = "get_#{name}_tastiness(#{@box_id})".intern
+  #   # How do I send with an argument?
+  #   get_info_method = "get_#{name}_info".intern # :get_bone_info
+  #   get_tastiness_method = "get_#{name}_tastiness".intern # get_bone_tastiness
 
-    result = "#{name.capitalize}: "
-    result.concat("#{@snack_box.send(get_info_method)}") # NoMethodError: undefined method `get_bone_info(1)'
-    result.concat(": #{@snack_box.send(get_tastiness_method)}")
-  end
+  #   result = "#{name.capitalize}: "
+  #   result.concat("#{@snack_box.send(get_info_method, @box_id)}")
+  #   result.concat(": #{@snack_box.send(get_tastiness_method, @box_id)}")
+  # end
 
-
+  # meta_snacks.bone # => "Bone: Phoenician rawhide: 20 "
   def self.define_snack(name)
     # Your code goes here...
+    
+    # MetaCorgiSnacks.define_snack("bone") # => defines an instance method
+    # called #bone
+    define_method(name) do
+    # def bone
+      name = name.to_s
+
+      get_info_method = "get_#{name}_info".intern
+      get_tastiness_method = "get_#{name}_tastiness".intern
+
+      result = "#{name.capitalize}: "
+
+      info = @snack_box.send(get_info_method, @box_id)
+      tastiness = @snack_box.send(get_tastiness_method, @box_id)
+    
+      result.concat("#{info}: #{tastiness}")
+    end
   end
+
+  # define_snack(:bone)
+  # define_snack(:kibble)
+  # define_snack(:treat)
 end
