@@ -1,0 +1,47 @@
+<h1>Edit <%= @album.title %> <h1>
+
+<form action = "<%=album_url(@album)%>" method = "post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+  <input type = "hidden" name = "_method" value = "patch">
+
+  <label for = "band"> Band: </label>
+  <select id = "band">
+    <% @bands.each do |band| %>
+      <option name = "album[band_id]" value = "<%= band.id %>" 
+        <% if @album.band_id == band.id %>
+          "selected"
+        <% end %>
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <br>
+
+  <label for = "title"> Album Title: </label>
+  <input type = "text" name = "album[title]" id = "title" value = "<%= @album.title %>">
+
+  <br>
+
+  <label for = "live">Live</label> 
+  <input type = "radio" name = "album[live]" id = "live" value = "true"
+    checked = <%= @album.live == true %>>
+
+  <br>
+
+  <label for = "studio">Studio</label> 
+  <input type = "radio" name = "album[live]" id = "studio" value = "false"
+    checked = <%= @album.live == false %>>
+
+  <br>
+
+  <label for = "year"> Release Year: </label>
+  <input type = "number" name = "album[year]" id = "year" value = "<%= @album.year %>">
+  
+
+
+  <input type = "submit" value = "save changes">
+</form>

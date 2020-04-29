@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Musicapp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <header>
+    <h1>Music App</h1>
+
+  <body>
+    <%= yield %>
+  </body>
+
+  <footer>
+    <% if !current_user.nil?  %>
+      <ul>
+        <li>Logged in as: <%= current_user.email %></li>
+        <li>
+          <form action = "<%= session_url %>" method = "post">
+            <input type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
+            <input type="hidden" value="delete" name="_method" />
+            <input type="submit" value="Logout" />
+          </form>
+        </li>
+      </ul>
+    <% else %>
+      <ul>
+        <li>
+          <form action = "<%= new_session_url %>" method = "get">
+            <input type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
+            <input type = "submit" value = "Login"/>
+          </form>
+        </li>
+        <li>
+          <form action = "<%= new_user_url %>" method = "get">
+            <input type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>">
+            <input type = "submit" value = "Create Account"/>
+          </form>
+        </li>
+      </ul>
+    <% end %>
+
+
+
+</html>

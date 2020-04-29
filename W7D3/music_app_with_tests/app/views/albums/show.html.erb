@@ -1,0 +1,30 @@
+<h5> Album Name: <%= @album.title %> <br>
+Artist Name: <%= @artist %> <br>
+Release Year: <%= @album.year %> <br>
+  Live or Studio: <% if @album.live == true %>
+    LIVE
+  <% else %>
+    STUDIO 
+  <% end%>
+<br>
+<br>
+
+  <form action = "<%=album_url(@album)%>" method = "post">
+    <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+    <input type = "hidden" name = "_method" value = "patch">
+    <input type = "submit" value = "edit album information">
+  </form>
+
+  <br>
+
+  <form action = "<%=album_url(@album)%>" method = "post">
+    <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+    <input type = "hidden" name = "_method" value = "delete">
+    <input type = "submit" value = "remove album from database">
+  </form>
